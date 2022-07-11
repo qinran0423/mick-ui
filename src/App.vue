@@ -13,6 +13,7 @@ import Test from './components/Test'
       <h3>title</h3>
     </template>
   </Test>
+  <SButton></SButton>
 </template>
 
 <style>
