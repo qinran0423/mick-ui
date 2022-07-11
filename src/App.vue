@@ -13,7 +13,9 @@ import Test from './components/Test'
       <h3>title</h3>
     </template>
   </Test>
-  <SButton></SButton>
+  <SButton type="primary" size="large"></SButton>
+  <SButton type="primary" size="medium"></SButton>
+  <SButton type="primary" size="small"></SButton>
 </template>
 
 <style>

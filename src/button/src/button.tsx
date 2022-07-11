@@ -1,11 +1,19 @@
-import { defineComponent } from 'vue'
+// button/src/button.tsx
+import { defineComponent, toRefs } from 'vue'
+import { ButtonProps, buttonProps } from './button-type'
 
 export default defineComponent({
   name: 'SButton',
-  setup(props, { slots }) {
+  props: buttonProps,
+  setup(props: ButtonProps, { slots }) {
+    const { type, size } = toRefs(props)
+
     return () => {
-      const defaultSlot = slots.default ? slots.default() : '按钮'
-      return <button class="s-btn s-btn--primary">{defaultSlot}</button>
+      return (
+        <button class={`s-btn s-btn--${type.value} s-btn--${size.value}`}>
+          {slots.default ? slots.default() : '按钮'}
+        </button>
+      )
     }
   }
 })
