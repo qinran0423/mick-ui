@@ -12,7 +12,11 @@ $s-light-text: var(--s-light-text, #ffffff); // 有色深色背景下字体颜�
 $s-primary: var(--s-primary, #5e7ce0); // 主要按钮，同品牌色
 $s-primary-hover: var(--s-primary-hover, #7693f5); // 主要按钮悬停
 $s-primary-active: var(--s-primary-active, #344899); // 主要按钮激活
+$s-primary-disabled: var(--s-primary-disabled, #b3c0e6); // 主要按钮禁用状态
+$s-disabled-bg: var(--s-disabled-bg, #c6c9cf); // 禁用背景
+$s-disabled-line: var(--s-disabled-line, #a5a8ad); // 禁用边框
 $s-text: var(--s-text, #252b3a); // 正文文本
+$s-disabled-text: var(--s-disabled-text, #757a83); // 禁用文本
 $s-block: var(
   --s-block,
   #ffffff

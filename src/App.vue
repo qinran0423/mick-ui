@@ -3,6 +3,8 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from './components/HelloWorld.vue'
 import Test from './components/Test'
+
+const confirm = () => console.log('confirm')
 </script>
 
 <template>
@@ -13,8 +15,8 @@ import Test from './components/Test'
       <h3>title</h3>
     </template>
   </Test>
-  <SButton type="primary" size="large"></SButton>
-  <SButton type="primary" size="medium"></SButton>
+  <SButton type="primary" size="large" @click="confirm"></SButton>
+  <SButton type="primary" size="medium" disabled @click="confirm"></SButton>
   <SButton type="primary" size="small"></SButton>
 </template>
 

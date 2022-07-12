@@ -5,8 +5,7 @@
   @apply inline-flex items-center justify-center;
 
   // 元素属性
-  @apply 
-  border-[1px] border-solid border-transparent 
+  @apply border-[1px] border-solid border-transparent 
   h-[28px] py-0 px-[20px]
   bg-transparent;
   border-radius: $s-border-radius;
@@ -24,6 +23,9 @@
     border-color $s-animation-duration-slow $s-animation-ease-in-out-smooth,
     color $s-animation-duration-slow $s-animation-ease-in-out-smooth;
 
+  &[disabled] {
+    @apply cursor-not-allowed;
+  }
 }
 
 @mixin button-variant($variant, $pseudo: false) {
