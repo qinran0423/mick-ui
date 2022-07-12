@@ -4,9 +4,12 @@ const { defineConfig, build } = require('vite')
 const vue = require('@vitejs/plugin-vue')
 const vueJsx = require('@vitejs/plugin-vue-jsx')
 const fsExtra = require('fs-extra')
+const fs = require('fs-extra')
 
 // 入口文件
 const entryFile = path.resolve(__dirname, './entry.ts')
+// 组件目录
+const componentsDir = path.resolve(__dirname, '../src')
 // 输出目录
 const outputDir = path.resolve(__dirname, '../build')
 // 基础配置
@@ -26,12 +29,12 @@ const rollupOptions = {
 }
 
 // 创建package.json文件
-const createPackageJson = () => {
+const createPackageJson = name => {
   const fileStr = `{
-    "name": "mick-ui",
+    "name": "${name ? name : 'mick-ui'}",
     "version": "0.0.0",
-    "main": "mick-ui.umd.js",
-    "module": "mick-ui.es.js",
+    "main": "${name ? 'index.umd.js' : 'mick-ui.umd.js'}",
+    "module": "${name ? 'index.es.js' : 'mick-ui.es.js'}",
     "author": "mick",
     "github": "",
     "description": "mick第一个组件库Mick-UI, 好好学习，天天向上！",
@@ -46,7 +49,40 @@ const createPackageJson = () => {
     }
   }`
 
-  fsExtra.outputFile(path.resolve(outputDir, 'package.json'), fileStr, 'utf-8')
+  if (name) {
+    fsExtra.outputFile(
+      path.resolve(outputDir, `${name}/package.json`),
+      fileStr,
+      'utf-8'
+    )
+  } else {
+    fsExtra.outputFile(
+      path.resolve(outputDir, 'package.json'),
+      fileStr,
+      'utf-8'
+    )
+  }
+}
+
+// 单组件按需构建
+const buildSingle = async name => {
+  await build(
+    defineConfig({
+      ...baseConfig,
+      build: {
+        rollupOptions,
+        lib: {
+          entry: path.resolve(componentsDir, name),
+          name: 'index',
+          fileName: 'index',
+          formats: ['es', 'umd']
+        },
+        outDir: path.resolve(outputDir, name)
+      }
+    })
+  )
+
+  createPackageJson(name)
 }
 
 const buildAll = async () => {
@@ -71,6 +107,16 @@ const buildAll = async () => {
 
 const buildLib = async () => {
   await buildAll()
+
+  fs.readdirSync(componentsDir)
+    .filter(name => {
+      const componentDir = path.resolve(componentsDir, name)
+      const isDir = fs.lstatSync(componentDir).isDirectory()
+      return isDir && fs.readdirSync(componentDir).includes('index.ts')
+    })
+    .forEach(async name => {
+      await buildSingle(name)
+    })
 }
 
 buildLib()
