@@ -15,7 +15,7 @@ const confirm = () => console.log('confirm')
       <h3>title</h3>
     </template>
   </Test>
-  <SButton type="primary" size="large" @click="confirm"></SButton>
+  <SButton type="primary" size="large" block @click="confirm"></SButton>
   <SButton type="primary" size="medium" disabled @click="confirm"></SButton>
   <SButton type="primary" size="small"></SButton>
 </template>
