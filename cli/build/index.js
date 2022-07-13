@@ -1,0 +1,15 @@
+"use strict";
+exports.__esModule = true;
+var commander_1 = require("commander");
+// 创建命令对象
+var cmd = new commander_1.Command();
+// 注册命令、参数， 以及用户传入之后的回调函数
+cmd
+    .command('create')
+    .description('创建一个组件的模板或配置文件')
+    // 添加命令参数 -t  | --type, <type>表明为必选参数
+    .option('-t --type <type>', '创建类型,可选值：component, lib-entry')
+    .action(function (args) {
+    console.log(args);
+});
+cmd.parse();
