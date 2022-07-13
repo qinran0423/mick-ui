@@ -1,4 +1,3 @@
-// button/src/button.tsx
 import { defineComponent, toRefs } from 'vue'
 import { ButtonProps, buttonProps } from './button-type'
 
