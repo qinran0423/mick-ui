@@ -1,18 +1,16 @@
 import Theme from 'vitepress/dist/client/theme-default'
 import HelloWorldVue from '../../../src/components/HelloWorld.vue'
-import Test from '../../../src/components/Test'
 import 'vitepress-theme-demoblock/theme/styles/index.css'
-import DemoBlock from 'vitepress-theme-demoblock/components/DemoBlock.vue'
-import Demo from 'vitepress-theme-demoblock/components/Demo.vue'
+import { registerComponents } from './register-components'
+import MickUI from '../../../src/mick-ui'
 
 export default {
   ...Theme,
   // 扩展应用程序实例
   enhanceApp({ app }) {
     // 注册组件
+    registerComponents(app)
     app.component('HelloWorld', HelloWorldVue)
-    app.component('Test', Test)
-    app.component('DemoBlock', DemoBlock)
-    app.component('Demo', Demo)
+    app.use(MickUI)
   }
 }

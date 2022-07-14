@@ -18,6 +18,7 @@ const confirm = () => console.log('confirm')
   <SButton type="primary" size="large" block @click="confirm"></SButton>
   <SButton type="primary" size="medium" disabled @click="confirm"></SButton>
   <SButton type="primary" size="small"></SButton>
+  <STree></STree>
 </template>
 
 <style>
