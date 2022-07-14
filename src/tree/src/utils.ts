@@ -11,7 +11,7 @@ export function generateInnerTree(
 
     // 记录调用栈，用于计算parentId
     if (path.length > 0 && path[path.length - 1].level >= level) {
-      while (path[path.length - 1].level >= level) {
+      while (path[path.length - 1]?.level >= level) {
         path.pop()
       }
     }
