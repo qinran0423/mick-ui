@@ -3,6 +3,7 @@ import HelloWorldVue from '../../../src/components/HelloWorld.vue'
 import 'vitepress-theme-demoblock/theme/styles/index.css'
 import { registerComponents } from './register-components'
 import MickUI from '../../../src/mick-ui'
+import '../../../src/index.scss'
 
 export default {
   ...Theme,
