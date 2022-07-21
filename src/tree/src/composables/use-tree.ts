@@ -3,7 +3,10 @@ import { IInnerTreeNode, ITreeNode } from '../tree-type'
 import { generateInnerTree } from '../utils'
 
 export function useTree(node: Ref<ITreeNode[]> | ITreeNode[]) {
+  console.log(unref(node))
+
   const innerData = ref(generateInnerTree(unref(node)))
+  console.log(innerData)
 
   const toggleNode = (node: IInnerTreeNode) => {
     const cur = innerData.value.find(item => item.id === node.id)

@@ -3,7 +3,8 @@ import { PropType, ExtractPropTypes } from 'vue'
 export const treeProps = {
   data: {
     type: Object as PropType<Array<ITreeNode>>,
-    required: true
+    required: true,
+    default: []
   },
   checkable: {
     type: Boolean,
